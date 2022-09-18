@@ -61,8 +61,6 @@ echo -e "[ ${green}ok${NC} ] Restarting Dropbear "
 sleep 1
 echo -e "[ ${green}ok${NC} ] Restarting stunnel4 "
 /etc/init.d/stunnel4 restart >/dev/null 2>&1
-sleep 1
-service cron restart
 sleep 0.5
 clear
 neofetch
