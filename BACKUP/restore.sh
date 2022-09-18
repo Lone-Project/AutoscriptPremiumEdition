@@ -16,6 +16,7 @@ unzip backup.zip
 rm -f backup.zip
 sleep 1
 echo " Start Restore . . . "
+cp /root/backup/.acme.sh /root/ &> /dev/null
 echo -e "[ ${green}INFO${NC} ] • Restoring passwd data..."
 sleep 1
 cp /root/backup/passwd /etc/ &> /dev/null
