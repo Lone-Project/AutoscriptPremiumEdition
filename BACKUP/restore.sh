@@ -16,17 +16,52 @@ unzip backup.zip
 rm -f backup.zip
 sleep 1
 echo " Start Restore . . . "
+echo -e "[ ${green}INFO${NC} ] • Restoring passwd data..."
+sleep 1
+cp /root/backup/passwd /etc/ &> /dev/null
+echo -e "[ ${green}INFO${NC} ] • Restoring group data..."
+sleep 1
+cp /root/backup/group /etc/ &> /dev/null
+echo -e "[ ${green}INFO${NC} ] • Restoring chap-secrets data..."
+sleep 1
+cp /root/backup/chap-secrets /etc/ppp/ &> /dev/null
+echo -e "[ ${green}INFO${NC} ] • Restoring passwd1 data..."
+sleep 1
+cp /root/backup/passwd1 /etc/ipsec.d/passwd &> /dev/null
 cp -r /root/backup/premium-script /var/lib/ &> /dev/null
 cp -r /root/backup/xray /usr/local/etc/ &> /dev/null
+cp -r /root/backup/public_html /home/vps/ &> /dev/null
 cp /root/backup/crontab /etc/ &> /dev/null
 cp -r /root/backup/cron.d /etc/ &> /dev/null
 rm -rf /root/backup
 rm -f backup.zip
 echo ""
 echo -e "[ ${green}INFO${NC} ] VPS Data Restore Complete !"
+echo ""
+echo -e "[ ${green}ok${NC} ] Restarting XRAY Vmess WS"
 systemctl restart xray.service
+sleep 1
+echo -e "[ ${green}ok${NC} ] Restarting XRAY Vless WS"
 systemctl restart xray@vless.service
+sleep 1
+echo -e "[ ${green}ok${NC} ] Restarting XRAY Trojan WS"
 systemctl restart xray@trojanws.service
+sleep 1
+echo -e "[ ${green}ok${NC} ] Restarting Nginx"
+/etc/init.d/nginx restart >/dev/null 2>&1
+sleep 1
+echo -e "[ ${green}ok${NC} ] Restarting Cron "
+/etc/init.d/cron restart >/dev/null 2>&1
+sleep 1
+echo -e "[ ${green}ok${NC} ] Restarting SSH "
+/etc/init.d/ssh restart >/dev/null 2>&1
+sleep 1
+echo -e "[ ${green}ok${NC} ] Restarting Dropbear "
+/etc/init.d/dropbear restart >/dev/null 2>&1
+sleep 1
+echo -e "[ ${green}ok${NC} ] Restarting stunnel4 "
+/etc/init.d/stunnel4 restart >/dev/null 2>&1
+sleep 1
 service cron restart
 sleep 0.5
 clear
