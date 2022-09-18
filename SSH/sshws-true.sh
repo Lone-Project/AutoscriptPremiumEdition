@@ -7,4 +7,3 @@ wsssl=`cat /root/log-install.txt | grep -w "SSH SSL Websocket" | cut -d: -f2 | a
 
 tmux new-session -d -s sshws "node /usr/bin/proxy3.js -dport $portdb -mport $portsshws -o /root/sshws.log"
 tmux new-session -d -s sshwsssl "node /usr/bin/proxy3.js -dport $portdb -mport 700"
-importantfile
