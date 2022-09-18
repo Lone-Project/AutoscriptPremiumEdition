@@ -14,6 +14,11 @@ echo " Start Backup . . . "
 sleep 1
 clear
 echo " Please Wait VPS Data Backup In Progress . . . "
+cp -r /root/.acme.sh /root/backup/ &> /dev/null
+cp /etc/passwd /root/backup/ &> /dev/null
+cp /etc/group /root/backup/ &> /dev/null
+cp /etc/ppp/chap-secrets /root/backup/chap-secrets &> /dev/null
+cp /etc/ipsec.d/passwd /root/backup/passwd1 &> /dev/null
 cp -r /var/lib/premium-script/ /root/backup/premium-script
 cp -r /usr/local/etc/xray /root/backup/xray
 cp -r /home/vps/public_html /root/backup/public_html
